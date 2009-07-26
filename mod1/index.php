@@ -45,7 +45,6 @@ $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users
 class  tx_switchbeuser_module1 extends t3lib_SCbase {
 				var $pageinfo;
 				var $config =array();
-				var $disAllowedUsers = array();
 
 				/**
 				 * Initializes the Module
