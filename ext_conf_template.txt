@@ -1,0 +1,3 @@
+# cat=basic; type=string; label= Warning Email Adress: if a User try to manipulate variables send an Email to this address
+
+warning_email = 
