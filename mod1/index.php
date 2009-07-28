@@ -77,8 +77,14 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 
 				
 						// initialize doc
+		if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {					
 					$this->doc = t3lib_div::makeInstance('template');
 					$this->doc->setModuleTemplate(t3lib_extMgm::extPath('switch_beuser') . 'mod1//mod_template.html');
+						
+		}else{				
+                    $this->doc = t3lib_div::makeInstance('mediumDoc');
+		}			
+					
 					$this->doc->backPath = $BACK_PATH;
 					
 					$this->content='';
@@ -107,7 +113,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 							// Render content:
 						$this->moduleContent();
 
-
+	if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {
 						// compile document
 					$markers['CONTENT'] = $this->content;
 
@@ -116,6 +122,11 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 					$this->content.= $this->doc->moduleBody($this->pageinfo, $docHeaderButtons, $markers);
 					$this->content.= $this->doc->endPage();
 					$this->content = $this->doc->insertStylesAndJS($this->content);
+	}else{			
+				    $this->content.=$this->doc->startPage($LANG->getLL('title'));
+                    $this->content.=$this->doc->spacer(5);
+					$this->content.= $this->doc->endPage();					
+	}				
 				
 				}
 
