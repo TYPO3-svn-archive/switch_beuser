@@ -45,6 +45,19 @@ class tx_changetca{
 		
 	}
 	
+	
+	 function processCmdmap_preProcess(&$command, $table, $id, &$value, &$pObj){
+		if($GLOBALS['BE_USER']->user['ses_backuserid']){
+			if ($command == 'delete' && ($table == 'tt_content' || $table == 'pages') ) {
+				//look for lock
+			#	$rec = t3lib_BEfunc::getRecord($table, $id,'tx_lockelement_locked');
+				if (intval($GLOBALS['BE_USER']->getTSConfigVal('tx_switch_beuser.disableDelete')) == 1){
+				$command ='';
+				}
+			}
+		}	
+    }
+	
 }
 
 
