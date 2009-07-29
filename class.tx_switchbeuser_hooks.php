@@ -28,7 +28,7 @@
  */
 
 
-class tx_changetca{
+class tx_switchbeuser_hooks{
 	
 	function getMainFields_preProcess($table,$row,&$pObj){
 		if($GLOBALS['BE_USER']->user['ses_backuserid']){
