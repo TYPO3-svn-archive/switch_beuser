@@ -79,15 +79,14 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 						// initialize doc
 		if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {					
 					$this->doc = t3lib_div::makeInstance('template');
-					$this->doc->setModuleTemplate(t3lib_extMgm::extPath('switch_beuser') . 'mod1//mod_template.html');
+					$this->doc->setModuleTemplate(t3lib_extMgm::extPath('switch_beuser') . 'mod1/mod_template.html');
 						
 		}else{				
                     $this->doc = t3lib_div::makeInstance('mediumDoc');
 		}			
-					
 					$this->doc->backPath = $BACK_PATH;
 					
-					$this->content='';
+					#$this->content='';
 
 					$this->content.=$this->doc->header($GLOBALS['LANG']->getLL('moduleheader'));
 					$this->content.=$this->doc->spacer(5);
@@ -116,7 +115,6 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 	if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {
 						// compile document
 					$markers['CONTENT'] = $this->content;
-
 							// Build the <body> for the module
 					$this->content = $this->doc->startPage($LANG->getLL('title'));
 					$this->content.= $this->doc->moduleBody($this->pageinfo, $docHeaderButtons, $markers);
@@ -125,7 +123,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 	}else{			
 				    $this->content.=$this->doc->startPage($LANG->getLL('title'));
                     $this->content.=$this->doc->spacer(5);
-					$this->content.= $this->doc->endPage();					
+					$this->content.=$this->doc->endPage();					
 	}				
 				
 				}
@@ -136,7 +134,6 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 				 * @return	void
 				 */
 				function printContent()	{
-
 					$this->content.=$this->doc->endPage();
 					echo $this->content;
 				}
@@ -148,6 +145,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 				 */
 				function moduleContent()	{
 						$this->content .= $this->getUserList();
+
 				}
 				
 				
@@ -292,21 +290,21 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 		$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['switch_beuser']);
 		$sysWarningEmail = $GLOBALS['TYPO3_CONF_VARS']['BE']['warning_email_addr'];
 		
+		$message = $GLOBALS['LANG']->getLL('misbehavior_text') . chr(10) . chr(10);
+		$message .= $GLOBALS['LANG']->getLL('username') . htmlspecialchars($GLOBALS['BE_USER']->user['username']) . chr(10);
+		$message .= $GLOBALS['LANG']->getLL('trytoswitch') . htmlspecialchars($username) . chr(10);
+		$message .= 'IP: ' . t3lib_div::getIndpEnv('REMOTE_ADDR') . chr(10);
+		$message .= $GLOBALS['LANG']->getLL('time') . strftime($GLOBALS['LANG']->getLL('timeformat'),time());
+		
+		$GLOBALS['BE_USER']->simplelog($message, 'switch_beuser', 2);
+	
 		if($sysWarningEmail || $extConf['warning_email']){
 			$email = $extConf['warning_email']?$extConf['warning_email']:$sysWarningEmail;
 			$subject = $GLOBALS['LANG']->getLL('misbehavior_subject');
-			$message = $GLOBALS['LANG']->getLL('misbehavior_text') . chr(10) . chr(10);
-			$message .= $GLOBALS['LANG']->getLL('username') . htmlspecialchars($GLOBALS['BE_USER']->user['username']) . chr(10);
-			$message .= $GLOBALS['LANG']->getLL('trytoswitch') . htmlspecialchars($username) . chr(10);
-			$message .= 'IP: ' . t3lib_div::getIndpEnv('REMOTE_ADDR') . chr(10);
-			$message .= $GLOBALS['LANG']->getLL('time') . strftime($GLOBALS['LANG']->getLL('timeformat'),time());
 			t3lib_div::plainMailEncoded($email,$subject,$message);
-			
-			$GLOBALS['BE_USER']->simplelog($message, 'switch_beuser', 2);
-			
 		}
-		$this->content .='<span style="color:red;font-size:12px;">' .  $GLOBALS['LANG']->getLL('email_sended_message') . '</span>';
 		
+		$this->content .='<span style="color:red;font-size:12px;">' .  $GLOBALS['LANG']->getLL('email_sended_message') . '</span>';
 	}
 	
 }

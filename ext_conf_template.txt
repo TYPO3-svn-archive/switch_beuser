@@ -1,3 +1,2 @@
-# cat=basic; type=string; label= Warning Email Adress: if a User try to manipulate variables send an Email to this address
-
+# cat=basic; type=string; label=LLL:EXT:switch_beuser/mod1/locallang.xml:extmng.warningemail
 warning_email = 
