@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for module &quot;user_txswitchbeuserM1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="username">Username: </label>
+			<label index="time">date / time : </label>			
+			<label index="misbehavior_subject">Possible Parameter Manipulation</label>
+			<label index="misbehavior_text">The following User has possible try to manipulate some User parameter</label>
+			<label index="trytoswitch">tried to switch to user: </label>			
+			<label index="timeformat"> %m/%d/%Y, %H:%M:%S </label>			
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="misbehavior_subject">Mögliche Parameter Manipulation</label>
+			<label index="misbehavior_text">Der folgende User versuchte scheinbar einige Parameter zu manipulieren.</label>
+			<label index="trytoswitch">Versuchte zu folgendem User zu switchen: </label>
+			<label index="username">Benutzername: </label>
+			<label index="time">Datum / Uhrzeit : </label>
+			<label index="timeformat">%d-%m-%Y, %H:%M:%S </label>									
+		</languageKey>
+	</data>
+</T3locallang>
