@@ -59,7 +59,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 					$this->config = $confTemp['properties'];
 					unset($confTemp);
 					if(t3lib_div::_GP('SwitchUser')){
-						$this->switchUser(t3lib_div::_GP('SwitchUser'));
+						$this->switchUser(intval(t3lib_div::_GP('SwitchUser')));
 					}
 
 					parent::init();
