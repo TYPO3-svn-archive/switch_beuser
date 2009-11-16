@@ -1,2 +1,8 @@
 # cat=basic; type=string; label=LLL:EXT:switch_beuser/mod1/locallang.xml:extmng.warningemail
 warning_email = 
+
+# cat=basic; type=string; label=LLL:EXT:switch_beuser/mod1/locallang.xml:extmng.locallangmailfile
+locallangmailfile = 
+
+# cat=basic; type=string; label=LLL:EXT:switch_beuser/mod1/locallang.xml:extmng.preferredlanguage
+preferredlanguage = 

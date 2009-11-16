@@ -27,8 +27,9 @@
  * Hint: use extdeveval to insert/update function index above.
  */
 
-
+ 
 $LANG->includeLLFile('EXT:switch_beuser/mod1/locallang.xml');
+
 require_once(PATH_t3lib . 'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
 	// DEFAULT initialization of a module [END]
@@ -290,6 +291,17 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 		$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['switch_beuser']);
 		$sysWarningEmail = $GLOBALS['TYPO3_CONF_VARS']['BE']['warning_email_addr'];
 		
+		if(isset($extConf['locallangmailfile']) && $extConf['locallangmailfile'] !=''){
+			$locallangfile = $extConf['locallangmailfile'];
+		}else{
+			$locallangfile = 'EXT:switch_beuser/res/locallang-mail.xml';
+		}
+		
+		if(isset($extConf['preferredlanguage']) && $extConf['preferredlanguage'] !=''){
+			$GLOBALS['LANG']->init($extConf['preferredlanguage']);
+		}
+		$GLOBALS['LANG']->includeLLFile($locallangfile);
+
 		$message = $GLOBALS['LANG']->getLL('misbehavior_text') . chr(10) . chr(10);
 		$message .= $GLOBALS['LANG']->getLL('username') . htmlspecialchars($GLOBALS['BE_USER']->user['username']) . chr(10);
 		$message .= $GLOBALS['LANG']->getLL('trytoswitch') . htmlspecialchars($username) . chr(10);
@@ -304,7 +316,13 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 			t3lib_div::plainMailEncoded($email,$subject,$message);
 		}
 		
-		$this->content .='<span style="color:red;font-size:12px;">' .  $GLOBALS['LANG']->getLL('email_sended_message') . '</span>';
+		// switch back to normal locallangfile
+		$GLOBALS['LANG']->init($GLOBALS['BE_USER']->uc['lang']);
+		$GLOBALS['LANG']->includeLLFile('EXT:switch_beuser/mod1/locallang.xml');
+		$this->content .='<span style="color:red;font-size:12px;">' .  $GLOBALS['LANG']->getLL('warningmailissend') . '</span>';
+		
+
+			
 	}
 	
 }

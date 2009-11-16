@@ -7,32 +7,21 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="title">Switch BeUser</label>
-			<label index="function1">Function #1</label>
-			<label index="username">Username: </label>
 			<label index="usernames">Usernames: </label>			
-			<label index="time">date / time : </label>			
-			<label index="misbehavior_subject">Possible Parameter Manipulation</label>
-			<label index="misbehavior_text">The following User has possible try to manipulate some User parameter</label>
-			<label index="function1">Function #1</label>
-			<label index="trytoswitch">tried to switch to user: </label>			
-			<label index="timeformat"> %m/%d/%Y, %H:%M:%S </label>			
-			<label index="email_sended_message">It seems that you try to manipulate some variables, an Email is sent to the admin.</label>			
 			<label index="moduleheader">Switch to Backend User</label>
 			<label index="extmng.warningemail">Warning Email Adress: if a User try to manipulate variables send an Email to this address.</label>
+			<label index="extmng.locallangmailfile">individual Locallang File - For the Email text: default EXT:switch_beuser/mod1/locallang.xml</label>
+			<label index="extmng.preferredlanguage">Preferred language for the Email message: default: current BE-Language; alternative: de/en </label>
+			<label index="warningmailissend">It seems that you try to manipulate some variables, an Email is sent to the admin.</label>			
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="title">Benutzer wechseln</label>
-			<label index="misbehavior_subject">Possible Parameter Manipulation</label>
-			<label index="misbehavior_text">The following User try a switch to a non allowed BeUser.</label>
-			<label index="function1">Function #1</label>
-			<label index="trytoswitch">Versuchte zu folgendem User zu switchen: </label>
 			<label index="usernames">Benutzernamen: </label>						
-			<label index="username">Benutzername: </label>
-			<label index="time">Datum / Uhrzeit : </label>
-			<label index="timeformat">%d-%m-%Y, %H:%M:%S </label>									
-			<label index="email_sended_message">It seems that you try to manipulate some variables, an Email is sent to the admin.</label>
 			<label index="moduleheader">Backend User wechseln</label>
 			<label index="extmng.warningemail">Email für Warnungen: Wenn ein Benutzer versucht Parameter zu manipulieren wird an diese Email eine Warnung geschickt.</label>
+			<label index="extmng.locallangmailfile">Individuelle Sprachdatei für den Email Text: default EXT:switch_beuser/mod1/locallang.xml</label>
+			<label index="extmng.preferredlanguage">Bevorzugte Sprache des Email Textes: default: aktuelle BE-Sprache ; Alternative: de/en </label>
+			<label index="warningmailissend">Es wurde eine Manipulation von Parametern registriert, der Administrator wurde informiert.</label>
 		</languageKey>
 	</data>
 </T3locallang>
