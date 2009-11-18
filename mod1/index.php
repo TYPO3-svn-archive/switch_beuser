@@ -78,7 +78,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 
 				
 						// initialize doc
-		if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {					
+		if (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver('4.2.0')) {				
 					$this->doc = t3lib_div::makeInstance('template');
 					$this->doc->setModuleTemplate(t3lib_extMgm::extPath('switch_beuser') . 'mod1/mod_template.html');
 						
@@ -87,8 +87,6 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 		}			
 					$this->doc->backPath = $BACK_PATH;
 					
-					#$this->content='';
-
 					$this->content.=$this->doc->header($GLOBALS['LANG']->getLL('moduleheader'));
 					$this->content.=$this->doc->spacer(5);
 
@@ -146,9 +144,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 				 */
 				function moduleContent()	{
 						$this->content .= $this->getUserList();
-
 				}
-				
 				
 				function getUserList() {
 					//globales content
@@ -187,7 +183,7 @@ class  tx_switchbeuser_module1 extends t3lib_SCbase {
 							 	 		htmlspecialchars($uDat['username']) .
 							 	 	'</td><td nowrap="nowrap" height="20px" class="'.($i % 2 == 0 ? 'bgColor4' : 'bgColor6').'">';
 							 	 
-						if ($curUid != $uDat['uid'] && !$uDat['disable'] && ($uDat['starttime'] == 0 || $uDat['starttime'] < time()) && ($uDat['endtime'] == 0 || $uDat['endtime'] > time()))	{
+						if ($curUid != $uDat['uid'] && !$uDat['disable'] && ($uDat['starttime'] == 0 || $uDat['starttime'] < time()) && ($uDat['endtime'] == 0 || $uDat['endtime'] > time()) && !$GLOBALS['BE_USER']->user['ses_backuserid'])	{
 								$uItem .= '<a href="'.t3lib_div::linkThisScript(array('SwitchUser'=>$uDat['uid'])).'" target="_top"><img '.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/su_back.gif').' border="0" align="top" title="'.htmlspecialchars('Switch user to: '.$uDat['username']).'" alt="" /></a>';
 						}
 						$uItem .= '</td></tr>';
